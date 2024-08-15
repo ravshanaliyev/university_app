@@ -22,7 +22,7 @@ export default function BasicInfo() {
       <Typography variant="h6" gutterBottom>
         Basic information
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <Grid item xs={12} sm={5}>
           <TextField
             required

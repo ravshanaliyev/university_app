@@ -7,6 +7,8 @@ import { Stack, Container, } from '@mui/material';
 
 import Iconify from '../iconify';
 import BasicInfo from './basic-info';
+import ParentInfo from './parent-info';
+import EduBackground from './edu-background';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -100,10 +102,10 @@ export default function ApplicationForm() {
           <BasicInfo />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          Item Two
+          <EduBackground />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
-          Item Three
+          <ParentInfo />
         </CustomTabPanel>
       </Stack>
     </Container >
