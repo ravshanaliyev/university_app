@@ -1,12 +1,11 @@
-import { Button, Container, FormControlLabel, Grid, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material'
+import { Button, Container, FormControlLabel, Grid, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useState } from 'react';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import Iconify from '../iconify';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -24,7 +23,7 @@ function CustomTabPanel(props: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: { xs: 2, sm: 3 } }}>{children}</Box>}
     </div>
   );
 }
@@ -47,21 +46,71 @@ export default function ApplicationForm() {
   };
 
   return (
-    <Container maxWidth="lg">
-      <Stack margin='30px 0' direction='row' alignItems='start' gap={2}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }} bgcolor={'#f5f5f5'} width={300} padding={2} borderRadius={2}>
-          <Tabs textColor="primary" indicatorColor="primary" orientation='vertical' sx={{ '& .MuiTabs-indicator': { display: 'none' } }} variant='fullWidth' value={value} onChange={handleChange} aria-label="basic tabs example" >
-            <Tab sx={{ textTransform: 'none', justifyContent: 'flex-start' }} icon={<Iconify icon="carbon:user-profile" />} iconPosition="start" label="Basic information" {...a11yProps(0)} />
-            <Tab sx={{ textTransform: 'none', justifyContent: 'flex-start' }} icon={<Iconify icon="carbon:book" />} iconPosition="start" label="Educational background" {...a11yProps(1)} />
-            <Tab sx={{ textTransform: 'none', justifyContent: 'flex-start' }} icon={<Iconify icon="carbon:document" />} iconPosition="start" label="Parent’s info" {...a11yProps(2)} />
+    <Container maxWidth="lg" sx={{ padding: { xs: 2, sm: 3 } }}>
+      <Stack
+        margin='30px 0'
+        direction={{ xs: 'column', sm: 'row' }}
+        alignItems='start'
+        gap={2}
+      >
+        <Box
+          sx={{
+            borderBottom: { xs: 0, sm: 1 },
+            borderColor: 'divider',
+            bgcolor: '#f5f5f5',
+            width: { xs: '100%', sm: 300 },
+            padding: 2,
+            borderRadius: 2,
+          }}
+        >
+          <Tabs
+            textColor="primary"
+            indicatorColor="primary"
+            // @ts-ignore
+            orientation='vertical'
+            sx={{ '& .MuiTabs-indicator': { display: 'none' } }}
+            variant='fullWidth'
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+          >
+            <Tab
+              sx={{ textTransform: 'none', justifyContent: 'flex-start' }}
+              icon={<Iconify icon="carbon:user-profile" />}
+              iconPosition="start"
+              label="Basic information"
+              {...a11yProps(0)}
+            />
+            <Tab
+              sx={{ textTransform: 'none', justifyContent: 'flex-start' }}
+              icon={<Iconify icon="carbon:book" />}
+              iconPosition="start"
+              label="Educational background"
+              {...a11yProps(1)}
+            />
+            <Tab
+              sx={{ textTransform: 'none', justifyContent: 'flex-start' }}
+              icon={<Iconify icon="carbon:document" />}
+              iconPosition="start"
+              label="Parent’s info"
+              {...a11yProps(2)}
+            />
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-          <Container maxWidth="md" sx={{ background: '#fff', padding: 4, borderRadius: 2, boxShadow: 3 }}>
+          <Container
+            maxWidth="md"
+            sx={{
+              background: '#fff',
+              padding: { xs: 2, sm: 4 },
+              borderRadius: 2,
+              boxShadow: 3,
+            }}
+          >
             <Typography variant="h6" gutterBottom>
               Basic information
             </Typography>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
               <Grid item xs={12} sm={5}>
                 <TextField
                   required
@@ -84,17 +133,15 @@ export default function ApplicationForm() {
                   />
                 </LocalizationProvider>
               </Grid>
-              <Stack direction="column" margin={2}>
+              <Grid item xs={12} sm={3}>
                 <Typography variant="body2">
                   Gender
                 </Typography>
-                <Stack direction="row" gap={2} >
-                  <RadioGroup row aria-label="gender" name="gender">
-                    <FormControlLabel value="man" control={<Radio />} label="Man" />
-                    <FormControlLabel value="woman" control={<Radio />} label="Woman" />
-                  </RadioGroup>
-                </Stack>
-              </Stack>
+                <RadioGroup row aria-label="gender" name="gender">
+                  <FormControlLabel value="man" control={<Radio />} label="Man" />
+                  <FormControlLabel value="woman" control={<Radio />} label="Woman" />
+                </RadioGroup>
+              </Grid>
               <Grid item xs={12} sm={4}>
                 <TextField
                   required
@@ -176,5 +223,5 @@ export default function ApplicationForm() {
         </CustomTabPanel>
       </Stack>
     </Container>
-  )
+  );
 }
