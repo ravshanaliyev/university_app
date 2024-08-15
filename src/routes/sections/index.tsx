@@ -11,18 +11,17 @@ import { dashboardRoutes } from './dashboard';
 export default function Router() {
   return useRoutes([
     {
-      path: '/',
+      path: '/dashboard',
       element: <Navigate to={PATH_AFTER_LOGIN} replace />,
     },
+    // Main routes
+    ...mainRoutes,
 
     // Auth routes
     ...authRoutes,
 
     // Dashboard routes
     ...dashboardRoutes,
-
-    // Main routes
-    ...mainRoutes,
 
     // No match 404
     { path: '*', element: <Navigate to="/404" replace /> },
