@@ -31,9 +31,10 @@
 //   )
 // }
 
-import { Stack, Link, Button, Container, useMediaQuery, IconButton } from '@mui/material';
-import Logo from '../../assets/images/logo.svg';
+import { Link, Stack, Button, Container, IconButton, useMediaQuery, } from '@mui/material';
+
 import SvgColor from '../svg-color';
+import Logo from '../../assets/images/logo.svg';
 
 export default function Navbar() {
   const isMobile = useMediaQuery((theme: any) => theme.breakpoints.down('sm'));

@@ -10,23 +10,20 @@ type Props = {
 
 export default function CompactLayout({ children }: Props) {
   return (
-    <>
-
-      <Container component="main">
-        <Stack
-          sx={{
-            py: 12,
-            m: 'auto',
-            maxWidth: 400,
-            minHeight: '100vh',
-            textAlign: 'center',
-            justifyContent: 'center',
-            bgcolor: 'blue',
-          }}
-        >
-          {children}
-        </Stack>
-      </Container>
-    </>
+    <Container component="main">
+      <Stack
+        sx={{
+          py: 12,
+          m: 'auto',
+          maxWidth: 400,
+          minHeight: '100vh',
+          textAlign: 'center',
+          justifyContent: 'center',
+          bgcolor: 'blue',
+        }}
+      >
+        {children}
+      </Stack>
+    </Container>
   );
 }

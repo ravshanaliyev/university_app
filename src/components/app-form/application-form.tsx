@@ -1,11 +1,12 @@
-import { Button, Container, FormControlLabel, Grid, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material';
-import Tabs from '@mui/material/Tabs';
+import { useState } from 'react';
+
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { useState } from 'react';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import Tabs from '@mui/material/Tabs';
+import { Stack, Container, } from '@mui/material';
+
 import Iconify from '../iconify';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import BasicInfo from './basic-info';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -23,7 +24,7 @@ function CustomTabPanel(props: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: { xs: 2, sm: 3 } }}>{children}</Box>}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 }
@@ -37,9 +38,6 @@ function a11yProps(index: number) {
 
 export default function ApplicationForm() {
   const [value, setValue] = useState(0);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [givenDate, setGivenDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -55,17 +53,18 @@ export default function ApplicationForm() {
       >
         <Box
           sx={{
-            borderBottom: { xs: 0, sm: 1 },
-            borderColor: 'divider',
-            bgcolor: '#f5f5f5',
-            width: { xs: '100%', sm: 300 },
+            bgcolor: '#fff',
             padding: 2,
             borderRadius: 2,
+            boxShadow: 3,
           }}
         >
           <Tabs
             textColor="primary"
             indicatorColor="primary"
+            style={{
+              width: '260px',
+            }}
             // @ts-ignore
             orientation='vertical'
             sx={{ '& .MuiTabs-indicator': { display: 'none' } }}
@@ -98,122 +97,7 @@ export default function ApplicationForm() {
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-          <Container
-            maxWidth="md"
-            sx={{
-              background: '#fff',
-              padding: { xs: 2, sm: 4 },
-              borderRadius: 2,
-              boxShadow: 3,
-            }}
-          >
-            <Typography variant="h6" gutterBottom>
-              Basic information
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={5}>
-                <TextField
-                  required
-                  fullWidth
-                  label="Full name"
-                  variant="outlined"
-                  placeholder="Enter your full name"
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    label="Date of birth"
-                    value={selectedDate}
-                    onChange={(newValue: any) => {
-                      setSelectedDate(newValue);
-                    }}
-                    //@ts-ignore
-                    renderInput={(params: any) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <Typography variant="body2">
-                  Gender
-                </Typography>
-                <RadioGroup row aria-label="gender" name="gender">
-                  <FormControlLabel value="man" control={<Radio />} label="Man" />
-                  <FormControlLabel value="woman" control={<Radio />} label="Woman" />
-                </RadioGroup>
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  required
-                  fullWidth
-                  label="Passport"
-                  variant="outlined"
-                  placeholder="Your passport serial number"
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    label="Given Date"
-                    value={givenDate}
-                    onChange={(newValue: any) => {
-                      setGivenDate(newValue);
-                    }}
-                    //@ts-ignore
-                    renderInput={(params: any) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    label="End Date"
-                    value={endDate}
-                    onChange={(newValue: any) => {
-                      setEndDate(newValue);
-                    }}
-                    //@ts-ignore
-                    renderInput={(params: any) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  label="Citizenship"
-                  variant="outlined"
-                  placeholder="Your citizenship"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  label="Telephone number"
-                  variant="outlined"
-                  placeholder="Enter your telephone number"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  label="Email"
-                  variant="outlined"
-                  placeholder="Enter your email"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} display="flex" justifyContent="flex-end" alignItems="center">
-                <Button variant="outlined" color="primary" sx={{ mr: 2 }}>
-                  Cancel
-                </Button>
-                <Button variant="contained" color="success">
-                  Next
-                </Button>
-              </Grid>
-            </Grid>
-          </Container>
+          <BasicInfo />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           Item Two
@@ -222,6 +106,6 @@ export default function ApplicationForm() {
           Item Three
         </CustomTabPanel>
       </Stack>
-    </Container>
+    </Container >
   );
 }
