@@ -7,12 +7,12 @@ export function createContrast(contrast: 'default' | 'bold', mode: 'light' | 'da
   const theme = {
     ...(contrast === 'bold' &&
       mode === 'light' && {
-        palette: {
-          background: {
-            default: grey[200],
-          },
+      palette: {
+        background: {
+          default: grey[200],
         },
-      }),
+      },
+    }),
   };
 
   const components = {
